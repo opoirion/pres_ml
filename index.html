@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -65,8 +65,7 @@
 				<section>
 					<section>
 						<h2>Solution: approche supervisée</h2>
-                                                <pre>
-                                                  <code class="python" data-trim style="width:900px; font-size: 22px;">
+                                                <pre><code class="python" data-trim style="width:900px; font-size: 22px;">
 def supervized_analysis():
     """ building a classifier """
 
@@ -76,19 +75,15 @@ def supervized_analysis():
     score = used_classifier.evalutation()
     used_classifier.predict("c'est un super commentaire positif")
 
-                                                  </code>
-                                                </pre>
+                                                  </code></pre>
 					</section>
                                 <section>
 						<h2>data processing</h2>
-                                                <pre>
-                                                  <code class="python" data-trim style="width:905px; font-size: 22px;">
+                                                <pre><code class="python" data-trim style="width:905px; font-size: 22px;">
 trainingdata = process(rawdata)
-                                                  </code>
-                                                </pre>
+                                                  </code></pre>
 						<h3>1-gram model</h3>
-                                                <pre>
-                                                  <code class="python" data-trim style="width:950px; font-size: 22px;">
+                                                <pre><code class="python" data-trim style="width:950px; font-size: 22px;">
 dictionnary = process_one_comment("super ce blog! J'adore ce truc")
 
 ### looking inside dictionnary ###
@@ -104,13 +99,11 @@ dictionnary = process_one_comment("super ce blog! J'adore ce truc")
 ### processing all rawdata ###
 
 pre_trainingdata = [process(rawdata) for raw in rawdata]
-                                                  </code>
-                                                </pre>
+                                                  </code></pre>
 					</section>
 					<section>
 						<h2><i>trainingdata</i> en tant que vecteurs et matrice (I)</h2>
-                                                <pre>
-                                                  <code class="python" data-trim style="width:950px; font-size: 22px;">
+                                                <pre><code class="python" data-trim style="width:950px; font-size: 22px;">
 vector, index = vectorize_one(dictionnary)
 
 ### looking inside vector ###
@@ -124,14 +117,12 @@ vector, index = vectorize_one(dictionnary)
 "adore":3,
 "truc":4
 }
-                                                  </code>
-                                                </pre>
+                                                  </code></pre>
                                                 <p> problème, on doit vectoriser <i>dictionnary</i> <b>par rapport</b> à rawdata
 					</section>
 					<section>
 						<h2><i>trainingdata</i> en tant que vecteurs et matrice (II)</h2>
-                                                <pre>
-                                                  <code class="python" data-trim style="width:950px; font-size: 22px;">
+                                                <pre><code class="python" data-trim style="width:950px; font-size: 22px;">
 vector, index = vectorize(dictionnary, rawdata)
 
 ### looking inside vector ###
@@ -153,33 +144,29 @@ vector, index = vectorize(dictionnary, rawdata)
 trainingdata = [vectorize(dictionnary)[0]
     for dictionnary  in pre_trainingdata]
 status = ["good", "good", "good", "bad", "bad", "bad"]
-                                                  </code>
-                                                </pre>
+                                                  </code></pre>
 					</section>
 				</section>
                                 <section>
                                   <section>
                                   <h2> Apprentissage </h2>
-                                  <pre>
-                                    <code class="python" data-trim style="width:905px; font-size: 22px;">
+                                  <pre><code class="python" data-trim style="width:905px; font-size: 22px;">
 used_classifier = KNearestNeighbors(k=1, distance="Jaccard")
 used_classifier.feed_with(trainingdata)
 used_classifier.predict("c'est un super commentaire positif")
-                                    </code>
-                                  </pre>
+                                    </code></pre>
                                 </section>
                                 <section>
                                   <h2> Algorithme des K-nearest-neighbors </h2>
-                                  <pre>
-                                    <code class="python" data-trim data-noescape style="width:950px; font-size: 18px;">
-### training (feed_with) ###
+                                  <p> Entrainement </p>
+                                  <pre><code class="python" data-trim data-noescape style="width:950px; font-size: 18px;">
 trainingdata = trainingdata
 status = status
 nb_neighbors = k
-
 """ do nothing, keep into memory trainingdata as matrix """
-
-### predict ###
+                                  </code></pre>
+                                  <p> Prédiction </p>
+                                  <pre><code class="python" data-trim data-noescape style="width:950px; font-size: 18px;">
 new_comment = "c'est un super commentaire positif"
 new_vector, index = vectorize(new_comment, <mark>rawdata</mark>)
 
@@ -192,34 +179,39 @@ for vector, state in zip(trainindata, status):
 order_by_best_score(results)
 results = results[0:nb_neighbors] #take k best scores
 result = most_represented_status(results) # "good" or "bad"
-                                    </code>
-                                  </pre>
+                                    </code></pre>
                                   </section>
-                                </section>
-
 				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
+                                  <h2>Distance de Jaccard</h2>
 
-						<aside class="notes">
-							This slide has fragments which are also stepped through in the notes window.
-						</aside>
-					</section>
-					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
-					</section>
+                                  \[ d_{jaccard} =  1 -  \frac{|A \cap B|}{|A \cup B|}\]
+                                  <p> en python: </p>
+
+                                   <pre style="height=200px"><code  class="python" data-trim data-noescape style="width:950px; font-size: 18px;">
+union = len(set(dict1.keys()).union(dict2.keys()));
+intersection = len(set(dict1.keys()).intersection(dict2.keys()));
+d_jaccard = 1.0 - float(union) / intersection
+                                   </code></pre>
 				</section>
-
+				<section>
+                                  <h2> Résultats </h2>
+                                  <table style="font-size: 22px">
+                                    <tr>
+                                      <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th> super ce blog! J'adore ce truc...<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th> De la balle! c'est vraiment super!<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th> que des bonnes choses, bien fait et très intéressant<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th> pas terrible c'est vraiment un blog de gros naze...<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th> On se fout de ma geule! remboursez!!! c'est naze!<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th> pas super ce blog, peut mieux faire je n'y reviendrai pas<BR></th>
+                                    </tr>
+                                  </table>
+				</section>
+                                </section>
 				<section id="transitions">
 					<h2>Transition Styles</h2>
 					<p>
@@ -476,7 +468,8 @@ Reveal.addEventListener( 'customevent', function() {
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
+			{ src: 'plugin/notes/notes.js', async: true },
+                        { src: 'plugin/math/math.js', async: true }
 				]
 			});
 
