@@ -62,9 +62,32 @@
 				</section>
 
 				<!-- Example of nested vertical slides -->
-				<section>
+                                <section>
+                                  <section>
+                                    <h2> Solution 1: règles maison </h2>
+	                            <pre><code class="python" data-trim style="width:900px; font-size: 22px;">
+new_comment = "c'est vraiment naze"
+if new_comment.count('naze'):
+    status = "bad"
+elif new_comment.count('bien'):
+    status = "good"
+...
+                                    </code></pre>
+                                  </section>
+                                  <section>
+                                    <h2>Limites</h2>
+                                    <ul>
+                                      <li> Aucun pouvoir de <u><b><font color="red">généralisation</font></b></u>
+                                        <ul><li> Si une rèle n'existe pas rien ne va l'inventer ou la <i>déduire</i></ul>
+<li> Règles non trivales
+<li> Complexités
+<li> ...etc...
+                                    </ul>
+                                  </section>
+                                </section>
+			<section>
 					<section>
-						<h2>Solution: approche supervisée</h2>
+						<h2>Solution 2: approche supervisée</h2>
                                                 <pre><code class="python" data-trim style="width:900px; font-size: 22px;">
 def supervized_analysis():
     """ building a classifier """
