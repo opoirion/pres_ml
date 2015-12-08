@@ -19,7 +19,6 @@
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
-
 		<!-- Printing and PDF exports -->
 		<script>
 			var link = document.createElement( 'link' );
@@ -28,7 +27,6 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
-
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -271,25 +269,119 @@ d_jaccard = 1.0 - float(union) / intersection
 				</section>
                                 </section>
                                 <section>
-                                  <h2>Généralisation</h2>
-                                </section>
-				<section data-state="customevent">
-					<h2>State Events</h2>
-					<p>
-						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
-					</p>
-					<pre><code class="javascript" data-trim contenteditable style="font-size: 18px;">
-Reveal.addEventListener( 'customevent', function() {
-	console.log( '"customevent" has fired' );
-} );
-					</code></pre>
-				</section>
-
+                                  <section>
+                                    <h1>Généralisation</h1>
+                                  </section>
+                                  <section id="vectorisation">
+                                    <h2> Vectorisation (I) </h2>
+                                    <lu>
+                                      <li> n-grams
+                                        <pre style="height=200px"><code  class="python" data-trim data-noescape style="width:950px; font-size: 16px;">
+{
+"super": 1,
+"super ce": 1,
+"super ce blog": 1,
+}
+                                        </code></pre>
+                   <li> k-mers
+                                        <pre style="height=200px"><code  class="python" data-trim data-noescape style="width:950px; font-size: 16px;">
+{
+"sup": 1,
+"supe": 1,
+"super": 1,
+"super!":1,
+}
+                                            </code></pre>
+                                    </lu>
+                                  </section>
+                                  <section>
+                                    <h2> Vectorisation (II) </h2>
+                                    <lu>
+                                      <li> personnalisé
+                                        <pre style="height=200px"><code  class="python" data-trim data-noescape style="width:950px; font-size: 16px;">
+{
+"!": 2,
+("!", -1): 1,
+("super", 0): 1
+}
+                                        </code></pre>
+                   <li> mixte
+                                        <pre style="height=200px"><code  class="python" data-trim data-noescape style="width:950px; font-size: 16px;">
+{
+"super ce": 1,
+"!": 1,
+"super": 1,
+("super", 0): 1,
+}
+                                            </code></pre>
+                                    </lu>
+                                    <h6>Attention aux données hétérogènes ! </h6>
+                                  </section>
+                                  <section>
+                                    <h2> Nettoyage (I) </h2>
+                                    <p><b>Scoring</b> de la pertinence d'un <i>attribut</i>:
+                                      <h6> Taille </h6>
+                                          \[ score_{pattern} =  log(size_{pattern})\]
+                                      <hr width="10%" />
+                                      <h6> Fréquences </h6>
+                                      \[ idf_{pattern} = log(\frac{NbComments}{NbComments_{pattern}}) \]
+                                      <hr width="10%" />
+                                      <h6>...etc...</h6>
+                                  </section>
+                                  <section>
+                                    <h2> Nettoyage (II): stemming </h2>
+                                    <ul>
+                                      <li> <i> Stop-words </i>
+                                       <ul>
+                                          <li> Calculs
+                                          <li> Connus
+                                       </ul>
+                                      <li> formes conjuguées
+                                        <ul><li> Connus </ul>
+                                      <li> Entités nommés
+                                        <ul><li> Calculs </ul>
+                                        <ul><li> Connus </ul>
+                                      <li> ...
+                                    </ul>
+                                  </section>
+                                  <section>
+                                    <h2> Distances généralisées</h2>
+                                  \[ d_{cosine} =  1 -  \frac{\sum{A_{i}B_{i}}}{\sqrt{\sum{A_{i}^2}}. \sqrt{\sum{B_{i}^2}}}\]
+                                  </section>
 				<section>
-					<h2>Take a Moment</h2>
-					<p>
-						Press B or . on your keyboard to pause the presentation. This is helpful when you're on stage and want to take distracting slides off the screen.
-					</p>
+                                  <h2> Résultats 1-NN: 2-grams </h2>
+                                  <p><i>&ldquo;pas super&rdquo;</i></p>
+                                  <table style="font-size: 22px">
+                                    <tr>
+                                      <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th> super ce blog! J'adore ce truc...<BR></th><th>0.92</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th> De la balle! c'est vraiment super!<BR></th><th>0.92</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th> que des bonnes choses, bien fait et très intéressant<BR></th><th>1.0</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th> pas terrible c'est vraiment un blog de gros naze...<BR></th><th>0.95</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th> On se fout de ma geule! remboursez!!! c'est naze!<BR></th><th>1.0</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th><font color="green"> pas super ce blog, peut mieux faire je n'y reviendrai pas<BR></th><th><font color="green">0.89</th>
+                                    </tr>
+                                  </table>
+				</section>
+                                <section>
+                                  <h2>oui mais ...</h2>
+                                </section>
+                                </section>
+				<section>
+					<h1>Évaluation</h1>
+                                </section>
+                                <section id="knn">
+                                  <h2>graphe 1-NN</h2>
+                                  <iframe data-src="test.html" style="width:950px; height:650px;"></iframe>
+                                </section>
+                                <section id="knn">
+                                  <h2>graphe 1-NN</h2>
+                                  <iframe data-src="test.html" style="width:950px; height:650px;"></iframe>
+                                </section>
 				</section>
 
 				<section>
@@ -341,8 +433,6 @@ Reveal.addEventListener( 'customevent', function() {
                         { src: 'plugin/math/math.js', async: true }
 				]
 			});
-
 		</script>
-
 	</body>
 </html>
