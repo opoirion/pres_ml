@@ -1,0 +1,78 @@
+{
+  "nodes": [
+    {
+      "group": 0, 
+      "name": "super ce blog! J'adore ce truc..."
+    }, 
+    {
+      "group": 0, 
+      "name": "De la balle! c'est vraiment super!"
+    }, 
+    {
+      "group": 0, 
+      "name": "que des bonnes choses, bien fait et tr\u00e8s int\u00e9ressant"
+    }, 
+    {
+      "group": 10, 
+      "name": "pas terrible c'est vraiment un blog de gros naze..."
+    }, 
+    {
+      "group": 10, 
+      "name": "On se fout de ma geule! remboursez!!! c'est naze!"
+    }, 
+    {
+      "group": 10, 
+      "name": "pas super ce blog, peut mieux faire je n'y reviendrai pas"
+    }, 
+    {
+      "group": 20, 
+      "name": "c'est un super commentaire positif"
+    }, 
+    {
+      "group": 20, 
+      "name": "pas super"
+    }
+  ], 
+  "links": [
+    {
+      "source": 0, 
+      "target": 5, 
+      "value": 1.7391304347826086
+    }, 
+    {
+      "source": 1, 
+      "target": 3, 
+      "value": 1.6666666666666663
+    }, 
+    {
+      "source": 2, 
+      "target": 1, 
+      "value": 0.0
+    }, 
+    {
+      "source": 3, 
+      "target": 1, 
+      "value": 1.6666666666666663
+    }, 
+    {
+      "source": 4, 
+      "target": 3, 
+      "value": 0.96774193548387122
+    }, 
+    {
+      "source": 5, 
+      "target": 0, 
+      "value": 1.7391304347826086
+    }, 
+    {
+      "source": 6, 
+      "target": 1, 
+      "value": 1.1111111111111116
+    }, 
+    {
+      "source": 7, 
+      "target": 5, 
+      "value": 1.1111111111111116
+    }
+  ]
+}
