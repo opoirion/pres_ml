@@ -47,8 +47,11 @@
 
 				</section>
 				<section>
-				  <h2>Problème</h2>
-                                  <h3>commentaires déjà présent sur le blog (rawdata)</h3>
+				<section data-background="patric.png">
+				</section>
+				  <section>
+                                  <h2>Commentaires présents</h2>
+                                  <h3> (rawdata) </h3>
                                         <UL>
                                           <IMG SRC="image/check.png" width="30" align="bottom"> super ce blog! J'adore ce truc...<BR>
                                           <IMG SRC="image/check.png" width="30" align="bottom"> De la balle! c'est vraiment super!<BR>
@@ -58,7 +61,7 @@
                                           <IMG SRC="image/wrong.png" width="30" align="bottom"> pas super ce blog, peut mieux faire je n'y reviendrai pas<BR>
                                         </UL>
 				</section>
-
+				</section>
 				<!-- Example of nested vertical slides -->
                                 <section>
                                   <section>
@@ -84,9 +87,9 @@ elif new_comment.count('bien'):
                                   </section>
                                 </section>
 			<section>
-					<section>
-						<h2>Solution 2: approche supervisée</h2>
-                                                <pre><code class="python" data-trim style="width:900px; font-size: 22px;">
+
+			  <h2>Solution 2: approche supervisée</h2>
+                          <pre><code class="python" data-trim style="width:900px; font-size: 22px;">
 def supervized_analysis():
     """ building a classifier """
 
@@ -96,14 +99,14 @@ def supervized_analysis():
     score = used_classifier.evalutation()
     used_classifier.predict("c'est un super commentaire positif")
 
-                                                  </code></pre>
-					</section>
-                                <section>
-						<h2>data processing</h2>
-                                                <pre><code class="python" data-trim style="width:905px; font-size: 22px;">
-trainingdata = process(rawdata)
-                                                  </code></pre>
-						<h3>1-gram model</h3>
+                          </code></pre>
+			</section>
+			<section>
+                          <section>
+						<h1>préparation des données</h1>
+                          </section>
+                          <section>
+						<h2>1-gram model</h2>
                                                 <pre><code class="python" data-trim style="width:950px; font-size: 22px;">
 dictionnary = process_one_comment("super ce blog! J'adore ce truc")
 
@@ -152,25 +155,24 @@ vector, index = vectorize(dictionnary, rawdata)
 ### looking inside index ###
 {
 "super": 0,
-"blog": 1,
-"ce": 2,
-"adore":3,
-"truc":4,
-"de":5,
-"la":6,
-"balle":7,
 ...
+"naze":27
 }
-### trainingdata final ###
-trainingdata = [vectorize(dictionnary)[0]
-    for dictionnary  in pre_trainingdata]
+
+                                                </code></pre>
+<p> training data final
+                                                <pre><code class="python" data-trim style="width:950px; font-size: 22px;">
+trainingdata = vectorize_all_dictionnary(dictionnary)
 status = ["good", "good", "good", "bad", "bad", "bad"]
                                                   </code></pre>
 					</section>
 				</section>
                                 <section>
                                   <section>
-                                  <h2> Apprentissage </h2>
+                                  <h1> Apprentissage </h1>
+                                  </section>
+                                  <section>
+                                  <h2> Processus </h2>
                                   <pre><code class="python" data-trim style="width:905px; font-size: 22px;">
 used_classifier = KNearestNeighbors(k=1, distance="Jaccard")
 used_classifier.feed_with(trainingdata)
@@ -369,10 +371,30 @@ d_jaccard = 1.0 - float(union) / intersection
 				</section>
                                 <section>
                                   <h2>oui mais ...</h2>
-                                </section>
-                                </section>
+				</section>
 				<section>
-					<h1>Évaluation</h1>
+                                  <h2> Résultats 1-NN: (2,4)-mers </h2>
+                                  <p><i>&ldquo;pas super&rdquo;</i></p>
+                                  <table style="font-size: 22px">
+                                    <tr>
+                                      <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th> super ce blog! J'adore ce truc...<BR></th><th>0.90</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th><font color="green"> De la balle! c'est vraiment super!<BR></th><th><font color="green"> 0.88</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th> que des bonnes choses, bien fait et très intéressant<BR></th><th>1.0</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th> pas terrible c'est vraiment un blog de gros naze...<BR></th><th>0.96</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th> On se fout de ma geule! remboursez!!! c'est naze!<BR></th><th>0.99</th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th> pas super ce blog, peut mieux faire je n'y reviendrai pas<BR></th><th>0.89</th>
+                                    </tr>
+                                  </table>
+                                </section>
+                                <section>
+                                  <h2>Influence de K</h2>
+                                    <p> faible k: <b>spécificité</b>
+                                    <p> fort k: <b>généralisation</b>
                                 </section>
                                 <section id="knn">
                                   <h2>graphe 1-NN</h2>
@@ -382,27 +404,116 @@ d_jaccard = 1.0 - float(union) / intersection
                                   <h2>graphe 2-NN</h2>
                                   <iframe data-src="2-nn.html" style="width:950px; height:650px;"></iframe>
                                 </section>
-				</section>
+                                <section id="knn3">
+                                  <h2>graphe 3-NN</h2>
 
+                                  <iframe data-src="3-nn.html" style="width:900px; height:500px;"></iframe>
+                                </section>
+                                </section>
 				<section>
-					<h2>Much more</h2>
-					<ul>
-						<li>Right-to-left support</li>
-						<li><a href="https://github.com/hakimel/reveal.js#api">Extensive JavaScript API</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#auto-sliding">Auto-progression</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#parallax-background">Parallax backgrounds</a></li>
-						<li><a href="https://github.com/hakimel/reveal.js#keyboard-bindings">Custom keyboard bindings</a></li>
-					</ul>
-				</section>
+                                  <section>
+				    <h1>Évaluation</h1>
+                                  </section>
+                                  <section>
+				    <h2>Méthodes</h2>
+                                    <p> Score du training-set
+                                    <p> Cross-validation
+                                    <p> Test set
+                                    <p> Méthodes propre à l'algo utilisé
+                                  </section>
+                                  <section id="ideal">
+                                    <h2>Situation idéal</h2>
+                                    <p> présence de patterns spécifiques et évidents entre les deux classes
+                                    <iframe data-src="k-nn.html" style="width:950px; height:650px;"></iframe>
+                                  </section>
+                                  <section id="real">
+                                    <h2>Réalité</h2>
+                                      <p> Confrontation a des données <b> bruités</b>
+                                        <iframe data-src="noise-k-nn.html" style="width:950px; height:650px;">
+                                        </iframe>
+                                  </section>
+                                  <section>
+                                    <h2>Attention! (I) </h2>
+                                  <table style="font-size: 22px">
+                                    <tr>
+                                      <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th>Fames vitae<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th>'Augue magna a sociis consequat dui sed sit est ve donec nulla per eget<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/check.png" width="30" align="bottom"></th><th>Donex viate gravida<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th>Velit dolor nullam sociis suscipit parturient aliquam<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th> Lorem velit<BR></th>
+                                    </tr><tr>
+                                    <th><IMG SRC="image/wrong.png" width="30" align="bottom"></th><th>Magna nulla dui non sed ad mattis dapibus ut mi<BR></th>
+                                    </tr>
+                                  </table>
+                                  </section>
+                                  <section>
+                                    <h2>Attention! (II) </h2>
+                                    <P> Aucun pattern!
+                                      <ul>
+                                        <li> score attendu: <b>50%</b>
+                                        <li> score direct pour 1-nn:  <b>100%</b>
+                                        <li> score direct pour 2-nn:  <b>75%</b>
+                                        <li> score direct pour 3-nn: <b>67%</b>
+                                        <li> ...
+                                        </ul>
+                                      <p> <b> Surestimation </b> du <em>vrai</em> score (Mauvaise méthode d'évaluation)
+                                      <p> modèle 1-nn trop spécifique (<em> overfitting </em>)
 
-				<section style="text-align: left;">
-					<h1>THE END</h1>
-					<p>
-						- <a href="http://slides.com">Try the online editor</a> <br>
-						- <a href="https://github.com/hakimel/reveal.js">Source code &amp; documentation</a>
-					</p>
+                                  </section>
 				</section>
+                                <section>
+                                  <section>
+                                    <h1>Pour conclure...</h1>
+                                    </section>
+                                  <section>
+                                    <h2> Apprendre à apprendre!  </h2>
+                                    <p> Existe-t-il quelque chose à apprendre?
+                                    <p> \[modèle = \{algorithme, vectorisation\}\]
+                                    <p> \[succès = f(donnés, modèle, paramètre) \]
+                                    <p> <br>Considérations techniques de l'algorithme
+                                    <br>
+                                    <p> <br>Machine-learning <=> <b>science</b> <br>(mais pas de raison d'avoir peur)
 
+                                  </section>
+                                  <section>
+                                    <h2> Ce que je déconseille </h2>
+                                    <ol>
+                                      <li> Ne pas bien connaître sont training-set <br>
+                                      <li> Utiliser un algo <em> trendy </em> que l'on ne comprend pas <br>(i.e. réseaux de neurones pour de la classif de texte)
+                                      <li> Copier un <em>bout de code </em> d'un tuto en injectant ses données
+                                        <li> Espérer que cela marche!
+                                      </ol>
+                                  </section>
+                                  <section>
+                                    <h2> Pour aller plus loin... </h2>
+                                    <table border="0">
+                                    <td><p> Clées théoriques
+                                    <ul>
+                                      <li> Probabilités (bayesienne)
+                                      <li> distances et espace vectoriel
+                                      <li> overfitting
+                                      <li> décomposition biais-variance
+                                      <li> fléau de la dimension
+                                      <li> ...
+                                    </ul></td>
+                                    <td><p> Algorithmes
+                                      <ul>
+                                        <li> arbre de décision
+                                        <li> perceptron
+                                        <li> <i> gradient descent </i>
+                                        <li> régression logistique
+                                        <li> ...
+                                      </ul></td>
+                                      </table>
+                                  </section>
+                                  </section>
+                                <section data-background="datas.gif">
+                                <h1 style="margin-top:-200px"> Merci! </h1>
+                                </section>
 			</div>
 
 		</div>

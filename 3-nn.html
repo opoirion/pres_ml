@@ -30,22 +30,22 @@
     <!-- </script> -->
     <script type="text/javascript">
 
-      var width = 960,
-      height = 500;
+      var width = 900,
+      height = 450;
 
       var color = d3.scale.category20();
 
       var force = d3.layout.force()
-      .charge(-250)
-      .gravity(0.5)
-      .linkDistance(10)
+      .charge(-300)
+      .gravity(0.1)
+      .linkDistance(80)
       .size([width, height]);
 
       var svg = d3.select("body").append("svg")
       .attr("width", width)
       .attr("height", height);
 
-      d3.json("python_code/rand-3-nn.json", function(error, graph) {
+      d3.json("python_code/3-nn.json", function(error, graph) {
       if (error) throw error;
 
       force
@@ -67,13 +67,13 @@
 
       node.append("circle")
       .style("fill", function(d) { return color(d.group); })
-      .attr("r", 5);
+      .attr("r", 20);
 
-      <!-- node.append("text") -->
-      <!-- .attr("x", 12) -->
-      <!-- .attr("dy", ".35em") -->
-      <!-- .style("fill", function(d) { return color(d.group); }) -->
-      <!-- .text(function(d) { return d.name; }); -->
+      node.append("text")
+      .attr("x", 12)
+      .attr("dy", ".35em")
+      .style("fill", function(d) { return color(d.group); })
+      .text(function(d) { return d.name; });
 
       node.append("title")
       .text(function(d) { return d.name; });

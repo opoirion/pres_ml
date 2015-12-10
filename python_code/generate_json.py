@@ -48,17 +48,24 @@ def main():
 
     nodes = [{'name': (training_set+new_comments)[i],
               'group':(groups + new_groups)[i]}
-             for i in range(len(training_set))]
+             for i in range(len(training_set+new_comments))]
     links = []
-    
+
     for i in range(len(matrix)):
         dist, idnei = nei.kneighbors(matrix[i], n_neighbors=n_neighbors + 1)
         dist, idnei = dist[0], idnei[0]
 
         for j in range(len(idnei[1:])):
             links.append({"source":i,"target":idnei[j+1],"value":10*(1 - dist[j+1])})
+
+    for i in range(len(new_comments)):
+        dist, idnei = nei.kneighbors(new_matrix[i], n_neighbors=n_neighbors + 1)
+        dist, idnei = dist[0], idnei[0]
+        for j in range(len(idnei[1:])):
+            links.append({"source":len(matrix) + i,"target":idnei[j],"value":10*(1 - dist[j+1])})
+
     jsondumped = json.dumps({'nodes':nodes, 'links':links}, indent=2)
 
-    jsonfile.write(jsondumped)    
+    jsonfile.write(jsondumped)
 if __name__ == "__main__":
     main()

@@ -29,7 +29,7 @@
       "name": "c'est un super commentaire positif"
     }, 
     {
-      "group": 20, 
+      "group": 30, 
       "name": "pas super"
     }
   ], 
@@ -72,7 +72,7 @@
     {
       "source": 7, 
       "target": 5, 
-      "value": 1.1111111111111116
+      "value": 0.8333333333333337
     }
   ]
 }

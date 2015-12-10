@@ -24,11 +24,12 @@ status = [
 ]
 
 new_comments = [
+    "c'est un super commentaire positif",
     "pas super"
 ]
 
 def main():
-    vectorizer = CountVectorizer(ngram_range=(1,2),max_df=1.0, min_df=0.0)
+    vectorizer = CountVectorizer(ngram_range=(2,4),max_df=1.0, min_df=0.0, analyzer='char')
 
     matrix = vectorizer.fit_transform(training_set)
     for new_comment in new_comments:

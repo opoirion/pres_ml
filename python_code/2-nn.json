@@ -29,7 +29,7 @@
       "name": "c'est un super commentaire positif"
     }, 
     {
-      "group": 20, 
+      "group": 30, 
       "name": "pas super"
     }
   ], 
@@ -41,8 +41,8 @@
     }, 
     {
       "source": 0, 
-      "target": 7, 
-      "value": 0.8333333333333337
+      "target": 1, 
+      "value": 0.50000000000000044
     }, 
     {
       "source": 1, 
@@ -51,8 +51,8 @@
     }, 
     {
       "source": 1, 
-      "target": 6, 
-      "value": 1.1111111111111116
+      "target": 4, 
+      "value": 0.76923076923076872
     }, 
     {
       "source": 2, 
@@ -91,8 +91,8 @@
     }, 
     {
       "source": 5, 
-      "target": 7, 
-      "value": 1.1111111111111116
+      "target": 1, 
+      "value": 0.35714285714285698
     }, 
     {
       "source": 6, 
@@ -101,18 +101,18 @@
     }, 
     {
       "source": 6, 
-      "target": 7, 
-      "value": 0.90909090909090939
+      "target": 3, 
+      "value": 0.8333333333333337
     }, 
     {
       "source": 7, 
       "target": 5, 
-      "value": 1.1111111111111116
+      "value": 0.8333333333333337
     }, 
     {
       "source": 7, 
-      "target": 6, 
-      "value": 0.90909090909090939
+      "target": 0, 
+      "value": 0.76923076923076872
     }
   ]
 }
