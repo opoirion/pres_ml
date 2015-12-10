@@ -428,7 +428,7 @@ d_jaccard = 1.0 - float(union) / intersection
                                   </section>
                                   <section id="real">
                                     <h2>Réalité</h2>
-                                      <p> Confrontation a des données <b> bruités</b>
+                                      <p> Confrontation a des données <b> bruitées</b>
                                         <iframe data-src="noise-k-nn.html" style="width:950px; height:650px;">
                                         </iframe>
                                   </section>
@@ -436,11 +436,11 @@ d_jaccard = 1.0 - float(union) / intersection
                                     <h2>Influence du modèle choisi</h2>
                                     <table style=" margin-left:-200px" width="1500px" height="1000px">
                                         <th>
-                                          <p> Distance euclidienne
+                                          <p> <center>Distance euclidienne
                                           <iframe data-src="distance2-k-nn.html" style="width:950px; height:650px;">
                                         </iframe></th>
                                         <th>
-                                          <p> Distance de Jaccard
+                                          <p> <center>Distance de Jaccard
                                           <iframe data-src="distance-k-nn.html" style="width:950px; height:650px;">
                                         </iframe></th>
 
@@ -487,17 +487,17 @@ d_jaccard = 1.0 - float(union) / intersection
                                     <h2> Apprendre à apprendre!  </h2>
                                     <p> Existe-t-il quelque chose à apprendre?
                                     <p> \[modèle = \{algorithme, vectorisation\}\]
-                                    <p> \[succès = f(donnés, modèle, paramètre) \]
+                                    <p> \[succès = f(donnés, modèle, paramètres) \]
                                     <p> <br>Considérations techniques de l'algorithme
                                     <br>
-                                    <p> <br>Machine-learning <=> <b>science</b> <br>(mais pas de raison d'avoir peur)
+                                    <p> <br>Machine-learning <=> <b>science</b> <br>(mais pas de raison d'avoir peur!)
 
                                   </section>
                                   <section>
                                     <h2> Ce que je déconseille </h2>
                                     <ol>
                                       <li> Ne pas bien connaître sont training-set <br>
-                                      <li> Utiliser un algo <em> trendy </em> que l'on ne comprend pas <br>(i.e. réseaux de neurones pour de la classif de texte)
+                                      <li> Utiliser un algo <em> trendy </em> que l'on ne comprend pas <br>(<em>i.e.</em> réseaux de neurones pour de la classif de texte)
                                       <li> Copier un <em>bout de code </em> d'un tuto en injectant ses données
                                         <li> Espérer que cela marche!
                                       </ol>
@@ -505,21 +505,24 @@ d_jaccard = 1.0 - float(union) / intersection
                                   <section>
                                     <h2> Pour aller plus loin... </h2>
                                     <table border="0">
-                                    <td><p> Clées théoriques
+                                    <td><p> <u><b>Clés théoriques</u></b>
                                     <ul>
-                                      <li> Probabilités (bayesienne)
+                                      <li> Probabilités (bayesiennes)
                                       <li> distances et espace vectoriel
+                                      <li> mesures de l'erreur
                                       <li> overfitting
                                       <li> décomposition biais-variance
                                       <li> fléau de la dimension
+                                      <li> régularisation
                                       <li> ...
                                     </ul></td>
-                                    <td><p> Algorithmes
+                                    <td><p> <u><b>Algorithmes</u></b>
                                       <ul>
                                         <li> arbre de décision
                                         <li> perceptron
                                         <li> <i> gradient descent </i>
                                         <li> régression logistique
+                                        <li> <i> Random forest
                                         <li> ...
                                       </ul></td>
                                       </table>
