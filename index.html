@@ -80,7 +80,12 @@ elif new_comment.count('bien'):
                                     <ul>
                                       <li> Aucun pouvoir de <u><b><font color="red">généralisation</font></b></u>
                                         <ul><li> Si une rèle n'existe pas rien ne va l'inventer ou la <i>déduire</i></ul>
-<li> Règles non trivales
+                                      <li> Règles non trivales
+                                        	                            <pre><code class="python" data-trim style="width:900px; font-size: 22px;">
+if new_comment.count('super') and not comment.count('pas super'):
+    status = "good"
+...
+                                    </code></pre>
 <li> Complexités
 <li> ...etc...
                                     </ul>
